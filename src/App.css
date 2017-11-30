@@ -1,0 +1,44 @@
+@import '~antd/dist/antd.css';
+
+.App {
+  text-align: center;
+}
+
+
+header {
+  height: 25%;
+  width: 100%;
+  background-color: powderblue;
+}
+
+/*
+.ant-carousel .slick-slide {
+    text-align: center;
+    height: 160px; 
+    line-height: 160px;
+    background: #364d79;
+    overflow: hidden;
+  }
+  .ant-carousel .slick-slide h3 {
+    color: #fff;
+  }
+  */
+.ant-carousel .slick-slide {
+  text-align: center;
+  height: 160px;
+  line-height: 160px;
+  background: #364d79;
+  overflow: hidden;
+}
+
+.ant-carousel .slick-slide h3 {
+  color: #fff;
+}
+  
+.ant-carousel  img {
+    max-height:160px;
+    width:auto;
+    height:auto;
+}
+  
+  
