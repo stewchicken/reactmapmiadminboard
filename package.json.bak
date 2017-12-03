@@ -1,18 +1,17 @@
 {
-  "name": "react-router-firebase-auth",
+  "name": "reactadminboard",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "react-scripts": "0.9.5"
-  },
   "dependencies": {
-    "antd": "^2.13.11",
-    "bootstrap": "^3.3.7",
-    "firebase": "^3.6.1",
+    "antd": "^2.13.10",
+    "firebase": "^4.6.2",
+    "prop-types": "^15.6.0",
     "re-base": "^3.2.0",
-    "react": "^15.4.0",
-    "react-dom": "^15.4.0",
-    "react-router-dom": "^4.0.0-beta.8"
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-googlemaps": "^0.4.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.17"
   },
   "scripts": {
     "start": "react-scripts start",
