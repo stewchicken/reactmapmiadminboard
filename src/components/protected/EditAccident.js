@@ -44,19 +44,27 @@ export default class EditAccident extends Component {
         } else {
             var that = this //for fat arrow function you dont need to do this 
             console.log("this.state.changestatus ### " + this.state.changestatus)
-           
+
             console.log("this.state.key " + this.state.key)
             console.log("this.state.accident " + this.state.accident)
             console.log("this.state.accident.key " + this.state.accident.key)
-            const rootRef = app.database().ref();
-            const accidentsRef = rootRef.child('accidentitems').child(this.state.key.trim());
-            accidentsRef.once('value', snapshot => {
-                console.log(snapshot.val())
-                console.log(that.state.changestatus)
-                snapshot.ref.update({
-                    status: that.state.changestatus
-                })              
-            })
+            //const rootRef = app.database().ref();
+            var accident = {}
+            accident.category = this.state.accident.category
+            accident.date = this.state.accident.date
+            accident.details = this.state.accident.details
+            accident.handynumber = this.state.accident.handynumber
+            accident.lat = this.state.accident.lat
+            accident.lng = this.state.accident.lng
+            accident.imagename = this.state.accident.imagename
+            accident.status = this.state.changestatus
+            const accidentsRef = app.database().ref('accidentitems').child(this.state.key).update(accident)
+                .then(() => ref.once('value'))
+                .then(snapshot => snapshot.val())
+                .catch(error => ({
+                    errorCode: error.code,
+                    errorMessage: error.message
+                }));
         }
     }
     grabAccident(key) {
