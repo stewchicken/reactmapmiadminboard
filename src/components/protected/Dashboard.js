@@ -20,8 +20,8 @@ export default class Dashboard extends Component {
   grabAccidents() {
 
     var that = this;
-    const rootRef = app.database().ref();
-    const accidentsRef = rootRef.child('accidentitems').orderByKey();
+   // const rootRef = app.database().ref();
+    const accidentsRef = app.database().ref().child('accidentitems').orderByKey();
 
     accidentsRef.once('value', snapshot => {
       var accidentsarray = [];
@@ -33,7 +33,6 @@ export default class Dashboard extends Component {
       that.setState({ accidents: accidentsarray })
       console.log(this.state.accidents)
     });
-
   }
 
   render() {

@@ -38,27 +38,30 @@ export default class EditAccident extends Component {
     }
 
     handleSubmit(event) {
-        if (this.state.changestatus == 'NONE') {
+        if (this.state.changestatus == 'NONE' && this.state.changeseverity == 'NONE') {
             event.preventDefault();
             alert("Please change status or serverity before submit! ")
         } else {
-            var that = this //for fat arrow function you dont need to do this 
-            console.log("this.state.changestatus ### " + this.state.changestatus)
-
-            console.log("this.state.key " + this.state.key)
-            console.log("this.state.accident " + this.state.accident)
-            console.log("this.state.accident.key " + this.state.accident.key)
-            //const rootRef = app.database().ref();
-            var accident = {}
+            let that = this //for fat arrow function you dont need to do this 
+            let accident = {}
             accident.category = this.state.accident.category
-            accident.date = this.state.accident.date
+            if (this.state.accident.date) {
+                accident.date = this.state.accident.date
+            }
             accident.details = this.state.accident.details
             accident.handynumber = this.state.accident.handynumber
             accident.lat = this.state.accident.lat
             accident.lng = this.state.accident.lng
             accident.imagename = this.state.accident.imagename
-            accident.status = this.state.changestatus
-            const accidentsRef = app.database().ref('accidentitems').child(this.state.key).update(accident)
+
+            if (this.state.changestatus != 'NONE') {
+                accident.status = this.state.changestatus
+            }
+            if (this.state.changeseverity != 'NONE') {
+                accident.category = this.state.changeseverity
+            }
+            const accidentsRef = app.database().ref('accidentitems').
+                child(this.state.key).update(accident)
                 .then(() => ref.once('value'))
                 .then(snapshot => snapshot.val())
                 .catch(error => ({
@@ -68,13 +71,13 @@ export default class EditAccident extends Component {
         }
     }
     grabAccident(key) {
-        var that = this;
-        var accident = {}
+        let that = this;
+        let accident = {}
         const rootRef = app.database().ref();
         const accidentsRef = rootRef.child('accidentitems').child(key);
         accidentsRef.once('value', snapshot => {
             accident.key = snapshot.key
-            var item = snapshot.val()
+            let item = snapshot.val()
             accident.key = snapshot.key
             accident.category = item.category
             accident.date = item.date
@@ -138,7 +141,15 @@ export default class EditAccident extends Component {
                             <option value="CLOSE">Close</option>
                         </select>
                     </label>
-                    <input type="submit" value="Submit" />
+                    <label>
+                        <select value={this.state.severity} onChange={this.handleSeverityChange.bind(this)}>
+                            <option value="NONE">Change Severity  </option>
+                            <option value="Nobody Injured">Nobody Injuried</option>
+                            <option value="Injured">Somebody Injuried</option>
+                            <option value="Someone Dead">Somebody Dead</option>
+                        </select>
+                    </label>
+                    <input type="submit" value="Update" />
                 </form>
             </div>
         )
