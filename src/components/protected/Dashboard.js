@@ -20,32 +20,18 @@ export default class Dashboard extends Component {
   grabAccidents() {
 
     var that = this;
-    /*
-    app.database().ref('accidentitems').once('value').then(function (snapshot) {
-      var x = snapshot.val();
-      that.setState({ accidents: x })
-    });*/
-
     const rootRef = app.database().ref();
     const accidentsRef = rootRef.child('accidentitems').orderByKey();
 
     accidentsRef.once('value', snapshot => {
-
-
-
       var accidentsarray = [];
-
       snapshot.forEach(childSnapshot => {
         let item = childSnapshot.val();
         item.key = childSnapshot.key;
         accidentsarray.push(item);
       });
-
-
       that.setState({ accidents: accidentsarray })
-
       console.log(this.state.accidents)
-
     });
 
   }
@@ -54,7 +40,6 @@ export default class Dashboard extends Component {
     return (
       <div>
         Dashboard of  accident tickets
-
          <Table dataSource={this.state.accidents}>
           <Column
             title="Status"
@@ -101,7 +86,7 @@ export default class Dashboard extends Component {
                 <span className="ant-divider" />
                 <a href="#">Delete</a>
                 <span className="ant-divider" />
-                <a href="#">
+                <a href={'editaccident/' + record.key}>
                   Edit
                 </a>
               </span>
