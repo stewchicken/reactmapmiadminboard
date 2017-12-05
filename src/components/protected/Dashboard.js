@@ -20,7 +20,7 @@ export default class Dashboard extends Component {
   grabAccidents() {
 
     var that = this;
-   // const rootRef = app.database().ref();
+    // const rootRef = app.database().ref();
     const accidentsRef = app.database().ref().child('accidentitems').orderByKey();
 
     accidentsRef.once('value', snapshot => {

@@ -112,7 +112,7 @@ export default class EditAccident extends Component {
                         <p>Date/Time: {this.state.accident.date}</p>
                     </div>
                     <div className="custom-card">
-                        <Icon type="edit" style={{ fontSize: 22, color: '#08c' }} />
+                        <Icon type="exception" style={{ fontSize: 22, color: '#08c' }} />
                         <p>Severity: {this.state.accident.category}</p>
                     </div>
                     <div className="custom-card">
@@ -128,7 +128,7 @@ export default class EditAccident extends Component {
                         <p>Mobile: {this.state.accident.handynumber}</p>
                     </div>
                     <div className="custom-card">
-                        <Icon type="exception" style={{ fontSize: 22, color: '#08c' }} />
+                        <Icon type="edit" style={{ fontSize: 22, color: '#08c' }} />
                         <p>Status: {this.state.accident.status}</p>
                     </div>
                 </Card>
