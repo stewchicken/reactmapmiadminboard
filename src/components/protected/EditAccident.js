@@ -55,9 +55,11 @@ export default class EditAccident extends Component {
             if (this.state.changestatus != 'NONE') {
                 accident.status = this.state.changestatus
             }
+
             if (this.state.changeseverity != 'NONE') {
                 accident.category = this.state.changeseverity
             }
+            
             const accidentsRef = app.database().ref().child('accidentitems').
                 child(this.state.key).update(accident)
                 .then(() => accidentsRef.once('value'))

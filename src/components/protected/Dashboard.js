@@ -7,13 +7,35 @@ const { Column, ColumnGroup } = Table;
 export default class Dashboard extends Component {
 
   constructor(props) {
-    super(props);
-    this.state = { accidents: [] };
-    this.grabAccidents = this.grabAccidents.bind(this);
+    super(props)
+    this.state = { accidents: [] }
+    this.grabAccidents = this.grabAccidents.bind(this)
+  }
+
+  // use observable instead of timer (next step)
+  componentWillMount() {
+    this.timer = setInterval(() => {
+      this.grabAccidents()
+    }, 1000)
+
+    //this.grabAccidents()
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer)
   }
 
   componentDidMount() {
-    this.grabAccidents();
+
+  }
+
+  deleteAccident(key, event) {
+    event.preventDefault()
+    const confirmed= confirm("Are you sure to delete this accident ?");
+    if(confirmed){
+      app.database().ref().child('accidentitems').child(key).remove();
+    }
+    console.log("delete event: " + event + ' key: ' + key)
   }
 
   grabAccidents() {
@@ -81,7 +103,7 @@ export default class Dashboard extends Component {
             render={(text, record) => (
               <span>
                 <span className="ant-divider" />
-                <a href="#">Delete</a>
+                <a href="#" onClick={this.deleteAccident.bind(this, record.key)} >Delete</a>
                 <span className="ant-divider" />
                 <a href={'editaccident/' + record.key}>
                   Edit
