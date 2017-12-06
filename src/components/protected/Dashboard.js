@@ -14,6 +14,8 @@ export default class Dashboard extends Component {
 
   // use observable instead of timer (next step)
   componentWillMount() {
+
+    this.grabAccidents() // start it before timer interval
     this.timer = setInterval(() => {
       this.grabAccidents()
     }, 1000)
@@ -29,13 +31,19 @@ export default class Dashboard extends Component {
 
   }
 
-  deleteAccident(key, event) {
+  deleteAccident(key, imagename, event) {
+    console.log("deleteAccident: " + event + ' key: ' + key + 'image: ' + imagename)
     event.preventDefault()
-    const confirmed= confirm("Are you sure to delete this accident ?");
-    if(confirmed){
+    const confirmed = confirm("Are you sure to delete this accident ?");
+    imagename=imagename+'.jpg'
+    if (confirmed) {
       app.database().ref().child('accidentitems').child(key).remove();
+      app.storage().ref().child('accidents/' + imagename ).delete().then(() => {
+        console.log( 'image: ' + imagename + ' is deleted successfully' )
+      }).catch( (error) =>{
+        console.log( 'image: ' + imagename+  ' is not deleted successfully' )
+      });
     }
-    console.log("delete event: " + event + ' key: ' + key)
   }
 
   grabAccidents() {
@@ -103,7 +111,7 @@ export default class Dashboard extends Component {
             render={(text, record) => (
               <span>
                 <span className="ant-divider" />
-                <a href="#" onClick={this.deleteAccident.bind(this, record.key)} >Delete</a>
+                <a href="#" onClick={this.deleteAccident.bind(this, record.key, record.imagename)} >Delete</a>
                 <span className="ant-divider" />
                 <a href={'editaccident/' + record.key}>
                   Edit
