@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import { app, ref, base } from '../../config/constants'
+import { app  } from '../../config/constants'
 import { Card, Icon } from 'antd'
 
 
-// var rootRef = app.database().ref();
-// const rootRef = app.database().ref();
 
 export default class EditAccident extends Component {
 
@@ -60,9 +58,9 @@ export default class EditAccident extends Component {
             if (this.state.changeseverity != 'NONE') {
                 accident.category = this.state.changeseverity
             }
-            const accidentsRef = app.database().ref('accidentitems').
+            const accidentsRef = app.database().ref().child('accidentitems').
                 child(this.state.key).update(accident)
-                .then(() => ref.once('value'))
+                .then(() => accidentsRef.once('value'))
                 .then(snapshot => snapshot.val())
                 .catch(error => ({
                     errorCode: error.code,
@@ -73,8 +71,7 @@ export default class EditAccident extends Component {
     grabAccident(key) {
         let that = this;
         let accident = {}
-        const rootRef = app.database().ref();
-        const accidentsRef = rootRef.child('accidentitems').child(key);
+        const accidentsRef = app.database().ref().child('accidentitems').child(key);
         accidentsRef.once('value', snapshot => {
             accident.key = snapshot.key
             let item = snapshot.val()

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { app, ref, base } from '../../config/constants'
+import { app } from '../../config/constants'
 import { Table, Icon } from 'antd';
 
 const { Column, ColumnGroup } = Table;
@@ -8,7 +8,6 @@ export default class Dashboard extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = { accidents: [] };
     this.grabAccidents = this.grabAccidents.bind(this);
   }
@@ -19,12 +18,11 @@ export default class Dashboard extends Component {
 
   grabAccidents() {
 
-    var that = this;
-    // const rootRef = app.database().ref();
+    let that = this;
     const accidentsRef = app.database().ref().child('accidentitems').orderByKey();
 
     accidentsRef.once('value', snapshot => {
-      var accidentsarray = [];
+      let accidentsarray = []
       snapshot.forEach(childSnapshot => {
         let item = childSnapshot.val();
         item.key = childSnapshot.key;
