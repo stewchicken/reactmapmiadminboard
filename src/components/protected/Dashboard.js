@@ -9,7 +9,7 @@ export default class Dashboard extends Component {
   constructor(props) {
     super(props)
     this.state = { accidents: [] }
-    this.grabAccidents = this.grabAccidents.bind(this)
+    //this.grabAccidents = this.grabAccidents.bind(this)
   }
 
   // use observable instead of timer (next step)
