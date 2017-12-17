@@ -2,8 +2,10 @@
 
 # Short Intro
 
-it is a dashboard implemented by React to process the accident reported by mapmi 
+it is a dashboard backend implemented by React to process the accident reported by mapmi 
 
+mapmi is an angular implemented handy app which could report/display accidents with gps location and photos
+on google map with marker
 
  
 # install & runn
@@ -16,7 +18,5 @@ it is a dashboard implemented by React to process the accident reported by mapmi
 
 # effects
 
-- start and run
-
-![start](screenshots/animation.gif)
+![start](screenshot/animate.gif)
 
