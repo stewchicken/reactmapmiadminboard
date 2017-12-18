@@ -35,13 +35,13 @@ export default class Dashboard extends Component {
     console.log("deleteAccident: " + event + ' key: ' + key + 'image: ' + imagename)
     event.preventDefault()
     const confirmed = confirm("Are you sure to delete this accident ?");
-    imagename=imagename+'.jpg'
+    imagename = imagename + '.jpg'
     if (confirmed) {
       app.database().ref().child('accidentitems').child(key).remove();
-      app.storage().ref().child('accidents/' + imagename ).delete().then(() => {
-        console.log( 'image: ' + imagename + ' is deleted successfully' )
-      }).catch( (error) =>{
-        console.log( 'image: ' + imagename+  ' is not deleted successfully' )
+      app.storage().ref().child('accidents/' + imagename).delete().then(() => {
+        console.log('image: ' + imagename + ' is deleted successfully')
+      }).catch((error) => {
+        console.log('image: ' + imagename + ' is not deleted successfully')
       });
     }
   }
@@ -72,6 +72,25 @@ export default class Dashboard extends Component {
             title="Status"
             dataIndex="status"
             key="status"
+            render={(text, record) => {
+
+              if (record.status === 'NEW') {
+                const spanStyle = {
+                  color: 'blue',
+                  weight: 'bold',
+                };
+
+                return (//jsx vdom syntax for style
+                  <span style={spanStyle}>
+                    {record.status}
+                  </span>
+                )
+              } else {
+                return (<span>
+                  {record.status}
+                </span>)
+              }
+            }}
           />
           <Column
             title="category"
