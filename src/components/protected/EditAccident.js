@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { app  } from '../../config/constants'
+import { app } from '../../config/constants'
 import { Card, Icon } from 'antd'
+//if no {} need for import default export class
+import SimpleMap from './SimpleMap'
 
 
 
@@ -59,7 +61,7 @@ export default class EditAccident extends Component {
             if (this.state.changeseverity != 'NONE') {
                 accident.category = this.state.changeseverity
             }
-            
+
             const accidentsRef = app.database().ref().child('accidentitems').
                 child(this.state.key).update(accident)
                 .then(() => accidentsRef.once('value'))
@@ -131,6 +133,12 @@ export default class EditAccident extends Component {
                         <p>Status: {this.state.accident.status}</p>
                     </div>
                 </Card>
+
+                {/* commnet out <SimpleMap/> due to it is not working properly */}
+
+                <SimpleMap />
+
+
                 <form onSubmit={this.handleSubmit.bind(this)}>
                     <label>
                         <select value={this.state.changestatus} onChange={this.handleStatusChange.bind(this)}>

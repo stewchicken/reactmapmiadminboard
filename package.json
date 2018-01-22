@@ -9,6 +9,7 @@
     "antd": "^2.13.11",
     "bootstrap": "^3.3.7",
     "firebase": "^3.6.1",
+    "google-map-react": "^0.28.0",
     "re-base": "^3.2.0",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
