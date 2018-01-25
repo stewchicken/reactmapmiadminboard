@@ -1,5 +1,19 @@
 import React, { Component } from 'react'
 import { app } from '../../config/constants'
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    NavbarBrand,
+    Nav,
+    NavItem,
+    NavLink,
+    Container,
+    Row,
+    Col,
+    Jumbotron,
+    Button
+} from 'reactstrap';
 import { Card, Icon } from 'antd'
 //if no {} need for import default export class
 import SimpleMap from './SimpleMap'
@@ -103,61 +117,76 @@ export default class EditAccident extends Component {
                     Edit Accident Ticket
                 </h3>
 
-                <Card style={{ width: 340 }} bodyStyle={{ padding: 0 }}>
-                    <div className="custom-image">
-                        <Icon type="camera" style={{ fontSize: 22, color: '#08c' }} />
-                        <img alt="accientimage" width="340px" src={this.state.accident.imageurl} />
-                    </div>
-                    <div className="custom-card">
-                        <Icon type="clock-circle-o" style={{ fontSize: 22, color: '#08c' }} />
-                        <p>Date/Time: {this.state.accident.date}</p>
-                    </div>
-                    <div className="custom-card">
-                        <Icon type="exception" style={{ fontSize: 22, color: '#08c' }} />
-                        <p>Severity: {this.state.accident.category}</p>
-                    </div>
-                    <div className="custom-card">
-                        <Icon type="copy" style={{ fontSize: 22, color: '#08c' }} />
-                        <p>Details: {this.state.accident.details}</p>
-                    </div>
-                    <div className="custom-card">
-                        <Icon type="global" style={{ fontSize: 22, color: '#08c' }} />
-                        <p>GPS(lat/lng): {this.state.accident.lat + ' / ' + this.state.accident.lng}</p>
-                    </div>
-                    <div className="custom-card">
-                        <Icon type="mobile" style={{ fontSize: 22, color: '#08c' }} />
-                        <p>Mobile: {this.state.accident.handynumber}</p>
-                    </div>
-                    <div className="custom-card">
-                        <Icon type="edit" style={{ fontSize: 22, color: '#08c' }} />
-                        <p>Status: {this.state.accident.status}</p>
-                    </div>
-                </Card>
+                <Jumbotron>
+                    <Container>
+                        <Row>
+                            <Col>
 
-                {/* commnet out <SimpleMap/> due to it is not working properly */}
+                                <Card style={{ width: 340 }} bodyStyle={{ padding: 0 }}>
+                                    <div className="custom-image">
+                                        <Icon type="camera" style={{ fontSize: 22, color: '#08c' }} />
+                                        <img alt="accientimage" width="340px" src={this.state.accident.imageurl} />
+                                    </div>
+                                    <div className="custom-card">
+                                        <Icon type="clock-circle-o" style={{ fontSize: 22, color: '#08c' }} />
+                                        <p>Date/Time: {this.state.accident.date}</p>
+                                    </div>
+                                    <div className="custom-card">
+                                        <Icon type="exception" style={{ fontSize: 22, color: '#08c' }} />
+                                        <p>Severity: {this.state.accident.category}</p>
+                                    </div>
+                                    <div className="custom-card">
+                                        <Icon type="copy" style={{ fontSize: 22, color: '#08c' }} />
+                                        <p>Details: {this.state.accident.details}</p>
+                                    </div>
+                                    <div className="custom-card">
+                                        <Icon type="global" style={{ fontSize: 22, color: '#08c' }} />
+                                        <p>GPS(lat/lng): {this.state.accident.lat + ' / ' + this.state.accident.lng}</p>
+                                    </div>
+                                    <div className="custom-card">
+                                        <Icon type="mobile" style={{ fontSize: 22, color: '#08c' }} />
+                                        <p>Mobile: {this.state.accident.handynumber}</p>
+                                    </div>
+                                    <div className="custom-card">
+                                        <Icon type="edit" style={{ fontSize: 22, color: '#08c' }} />
+                                        <p>Status: {this.state.accident.status}</p>
+                                    </div>
+                                </Card>
+                            </Col>
+                            <Col>
 
-                <SimpleMap />
+                                <div>
+
+                                    <form onSubmit={this.handleSubmit.bind(this)}>
+                                        <label>
+                                            <select value={this.state.changestatus} onChange={this.handleStatusChange.bind(this)}>
+                                                <option value="NONE">Change Status  </option>
+                                                <option value="NEW">NEW</option>
+                                                <option value="INPROCESS">InProcess</option>
+                                                <option value="CLOSE">Close</option>
+                                            </select>
+                                        </label>
+                                        <label>
+                                            <select value={this.state.severity} onChange={this.handleSeverityChange.bind(this)}>
+                                                <option value="NONE">Change Severity  </option>
+                                                <option value="Nobody Injured">Nobody Injuried</option>
+                                                <option value="Injured">Somebody Injuried</option>
+                                                <option value="Someone Dead">Somebody Dead</option>
+                                            </select>
+                                        </label>
+                                        <input type="submit" value="Update" />
+                                    </form>
+                                </div>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <SimpleMap/>
+                        </Row>
+                    </Container>
+                </Jumbotron>
 
 
-                <form onSubmit={this.handleSubmit.bind(this)}>
-                    <label>
-                        <select value={this.state.changestatus} onChange={this.handleStatusChange.bind(this)}>
-                            <option value="NONE">Change Status  </option>
-                            <option value="NEW">NEW</option>
-                            <option value="INPROCESS">InProcess</option>
-                            <option value="CLOSE">Close</option>
-                        </select>
-                    </label>
-                    <label>
-                        <select value={this.state.severity} onChange={this.handleSeverityChange.bind(this)}>
-                            <option value="NONE">Change Severity  </option>
-                            <option value="Nobody Injured">Nobody Injuried</option>
-                            <option value="Injured">Somebody Injuried</option>
-                            <option value="Someone Dead">Somebody Dead</option>
-                        </select>
-                    </label>
-                    <input type="submit" value="Update" />
-                </form>
+
             </div>
         )
     }
