@@ -105,12 +105,35 @@ export default class EditAccident extends Component {
 
                 <Row>
                     <Col span={12}>
-
-
-                        <Card style={{ width: 340 }} bodyStyle={{ padding: 0 }}>
+                        <Card bodyStyle={{ padding: 0 }}>
                             <div className="custom-image">
                                 <Icon type="camera" style={{ fontSize: 22, color: '#08c' }} />
-                                <img alt="accientimage" width="340px" src={this.state.accident.imageurl} />
+                                <img alt="accientimage" width="100%" src={this.state.accident.imageurl} />
+                            </div>
+                        </Card>
+                    </Col>
+                    <Col span={12}>
+                        <Card>
+                            <div className="custom-card">
+                                <form onSubmit={this.handleSubmit.bind(this)}>
+                                    <label>
+                                        <select value={this.state.changestatus} onChange={this.handleStatusChange.bind(this)}>
+                                            <option value="NONE">Change Status  </option>
+                                            <option value="NEW">NEW</option>
+                                            <option value="INPROCESS">InProcess</option>
+                                            <option value="CLOSE">Close</option>
+                                        </select>
+                                    </label>
+                                    <label>
+                                        <select value={this.state.severity} onChange={this.handleSeverityChange.bind(this)}>
+                                            <option value="NONE">Change Severity  </option>
+                                            <option value="Nobody Injured">Nobody Injuried</option>
+                                            <option value="Injured">Somebody Injuried</option>
+                                            <option value="Someone Dead">Somebody Dead</option>
+                                        </select>
+                                    </label>
+                                    <input type="submit" value="Update" />
+                                </form>
                             </div>
                             <div className="custom-card">
                                 <Icon type="clock-circle-o" style={{ fontSize: 22, color: '#08c' }} />
@@ -136,41 +159,19 @@ export default class EditAccident extends Component {
                                 <Icon type="edit" style={{ fontSize: 22, color: '#08c' }} />
                                 <p>Status: {this.state.accident.status}</p>
                             </div>
-                        </Card>
-
-
-                    </Col>
-                    <Col span={12}>
-                        <Card>
-                            <form onSubmit={this.handleSubmit.bind(this)}>
-                                <label>
-                                    <select value={this.state.changestatus} onChange={this.handleStatusChange.bind(this)}>
-                                        <option value="NONE">Change Status  </option>
-                                        <option value="NEW">NEW</option>
-                                        <option value="INPROCESS">InProcess</option>
-                                        <option value="CLOSE">Close</option>
-                                    </select>
-                                </label>
-                                <label>
-                                    <select value={this.state.severity} onChange={this.handleSeverityChange.bind(this)}>
-                                        <option value="NONE">Change Severity  </option>
-                                        <option value="Nobody Injured">Nobody Injuried</option>
-                                        <option value="Injured">Somebody Injuried</option>
-                                        <option value="Someone Dead">Somebody Dead</option>
-                                    </select>
-                                </label>
-                                <input type="submit" value="Update" />
-                            </form>
-
-                            {this.state.accident.lat ?
-                                <SimpleMap center={{ lat: this.state.accident.lat, lng: this.state.accident.lng }}
-                                    markerPositon={{ lat: this.state.accident.lat, lng: this.state.accident.lng }} />
-                                : null
-                            }
+                            {/*
+                                SimpleMap commponent will be loaded only this.state.accident.lat existing
+                             */}
+                            <div>
+                                {this.state.accident.lat ?
+                                    <SimpleMap center={{ lat: this.state.accident.lat, lng: this.state.accident.lng }}
+                                        markerPositon={{ lat: this.state.accident.lat, lng: this.state.accident.lng }} />
+                                    : null
+                                }
+                            </div>
                         </Card>
                     </Col>
                 </Row>
-
             </div>
         )
     }
