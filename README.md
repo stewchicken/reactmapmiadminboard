@@ -8,7 +8,7 @@ mapmi is an angular implemented handy app which could report/display accidents w
 on google map with marker
 
  
-# install & runn
+# install & run
 
 - npm install
 
