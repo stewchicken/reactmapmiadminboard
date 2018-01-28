@@ -19,4 +19,7 @@ on google map with marker
 # effects
 
 ![start](screenshot/animate.gif)
+![start](screenshot/dashboard1.png)
+![start](screenshot/dashboard2.png)
+![start](screenshot/dashboard3.png)
 
