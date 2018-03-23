@@ -14,14 +14,14 @@ export default class Register extends Component {
     auth(this.email.value, this.pw.value)
       .catch(e => this.setState(setErrorMsg(e)))
   }
-  render () {
+  render() {
     return (
       <div className="col-sm-6 col-sm-offset-3">
         <h1>Register</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label>Email</label>
-            <input className="form-control" ref={(email) => this.email = email} placeholder="Email"/>
+            <input className="form-control" ref={(email) => this.email = email} placeholder="Email" />
           </div>
           <div className="form-group">
             <label>Password</label>
