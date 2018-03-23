@@ -7,7 +7,7 @@ import mapmi3 from '../images/mapmi3.png';
 export default class Home extends Component {
   render() {
     return (
-      <div>
+      <div className="homediv">
         <Carousel autoplay>
           <div> <img src={mapmi1} alt="MapMi Accident Ticket" /> </div>
           <div> <img src={mapmi2} alt="MapMi Accident Ticket" /> </div>
