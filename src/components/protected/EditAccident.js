@@ -126,10 +126,11 @@ export default class EditAccident extends Component {
                                     </label>
                                     <label>
                                         <select value={this.state.severity} onChange={this.handleSeverityChange.bind(this)}>
-                                            <option value="NONE">Change Severity  </option>
-                                            <option value="Nobody Injured">Nobody Injuried</option>
-                                            <option value="Injured">Somebody Injuried</option>
-                                            <option value="Someone Dead">Somebody Dead</option>
+                                            <option value="NONE">Kategorie wechseln  </option>
+                                            <option value="Defekt Laterne">Defekt Laterne</option>
+                                            <option value="Haustier Vermisst">Haustier Vermisst</option>
+                                            <option value="Schlagloch">Schlagloch</option>
+                                            <option value="Vandalismus">Vandalismus </option>
                                         </select>
                                     </label>
                                     <input type="submit" value="Update" />
